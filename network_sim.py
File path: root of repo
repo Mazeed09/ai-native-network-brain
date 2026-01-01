@@ -1,0 +1,32 @@
+import csv
+import random
+import time
+import os
+
+# Make sure data folder exists
+os.makedirs("data", exist_ok=True)
+
+OUTPUT_CSV = "data/network_metrics.csv"
+
+def generate_metrics(num_rows=200):
+    with open(OUTPUT_CSV, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["timestamp", "latency", "packet_loss", "throughput", "jitter"])
+        
+        for i in range(num_rows):
+            timestamp = int(time.time()) + i
+            latency = random.uniform(10, 200)  # ms
+            packet_loss = random.uniform(0, 5)  # %
+            throughput = random.uniform(10, 1000)  # Mbps
+            jitter = random.uniform(0, 50)  # ms
+            
+            # occasional spikes
+            if random.random() < 0.1:
+                latency *= random.uniform(1.5, 3)
+                packet_loss *= random.uniform(1.5, 4)
+            
+            writer.writerow([timestamp, round(latency,2), round(packet_loss,2), round(throughput,2), round(jitter,2)])
+
+if __name__ == "__main__":
+    generate_metrics()
+    print("Network data generated at:", OUTPUT_CSV)
