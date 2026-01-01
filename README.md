@@ -31,6 +31,8 @@ This project simulates network metrics, labels network states, generates AI reas
 
 ---
 
+Copy_of_AI_Native_Network_Brain.ipynb
+
 ## **Getting Started**
 
 ### **1. Run in Google Colab**
