@@ -77,3 +77,5 @@ This prototype demonstrates **AI-driven network monitoring, state analysis, and 
 ## **License**
 
 MIT License — free to use, modify, and share.
+
+©️ 2026 Metel_Inc 
