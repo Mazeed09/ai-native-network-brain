@@ -1,0 +1,8 @@
+scenario: satellite_ntn
+description: Non-terrestrial network template for LEO handover experiments.
+parameters:
+  satellites: 24
+  gateways: 4
+  beam_latency_ms: [25, 80]
+  handover_interval_s: 30
+  weather_loss_model: rain_fade_v1

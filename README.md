@@ -81,3 +81,18 @@ This prototype demonstrates **AI-driven network monitoring, state analysis, and 
 MIT License — free to use, modify, and share
 
 ©️ 2026 Metel_Inc 
+
+---
+
+## Autonomous Telecom R&D Lab (New)
+
+A complete modular implementation for a 5-phase autonomous telecom lab is available at:
+
+- `telecom_rnd_lab/README.md`
+- `telecom_rnd_lab/phase1_digital_env`
+- `telecom_rnd_lab/phase2_telemetry`
+- `telecom_rnd_lab/phase3_rl_brain`
+- `telecom_rnd_lab/phase4_safety`
+- `telecom_rnd_lab/phase5_multidomain`
+
+Use `telecom_rnd_lab/scripts/run_phase.sh <1..5>` to run phases independently.
