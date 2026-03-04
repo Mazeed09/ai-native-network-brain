@@ -1,0 +1,8 @@
+scenario: urban_6g_densification
+description: Dense small-cell model with multi-band and AI-native orchestration.
+parameters:
+  small_cells: 320
+  macro_cells: 28
+  spectrum_bands_ghz: [3.5, 6, 28, 140]
+  ue_density_per_km2: 18000
+  ai_scheduler: enabled

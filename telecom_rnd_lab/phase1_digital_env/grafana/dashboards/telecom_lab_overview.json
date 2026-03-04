@@ -1,0 +1,30 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "RL Episode Reward",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "rl_episode_reward", "refId": "A"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "RL Action Decisions",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "rl_action_total", "refId": "A"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Node CPU Usage",
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+      "targets": [{"expr": "rate(container_cpu_usage_seconds_total[1m])", "refId": "A"}]
+    }
+  ],
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["telecom", "rl"],
+  "title": "Telecom Lab Overview",
+  "uid": "telecom-lab-overview",
+  "version": 1
+}

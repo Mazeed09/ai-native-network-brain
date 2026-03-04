@@ -1,0 +1,8 @@
+scenario: maritime_mesh
+description: Vessel-to-vessel and vessel-to-shore self-healing mesh.
+parameters:
+  vessels: 40
+  coastal_stations: 6
+  radio_range_km: 35
+  sea_state_profile: moderate
+  routing_protocol: batman_adv

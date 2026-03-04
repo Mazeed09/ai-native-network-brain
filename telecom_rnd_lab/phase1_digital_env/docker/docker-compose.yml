@@ -1,0 +1,67 @@
+version: "3.9"
+
+# Phase 1 orchestration: core, RAN emulation placeholder, SDN emulation sidecar, observability.
+services:
+  open5gs-core:
+    image: gradiant/open5gs:2.7.0
+    container_name: open5gs-core
+    network_mode: host
+    restart: unless-stopped
+
+  ueransim:
+    image: ghcr.io/aligungr/ueransim:latest
+    container_name: ueransim
+    network_mode: host
+    depends_on:
+      - open5gs-core
+    restart: unless-stopped
+
+  mininet-controller:
+    image: opennetworking/onos:latest
+    container_name: mininet-controller
+    ports:
+      - "8181:8181"
+      - "6653:6653"
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: telecom-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    container_name: telecom-node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: telecom-cadvisor
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: unless-stopped
+
+
+  grafana:
+    image: grafana/grafana:11.1.4
+    container_name: telecom-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ../grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
+      - ../grafana/dashboards:/etc/grafana/provisioning/dashboards/json:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
